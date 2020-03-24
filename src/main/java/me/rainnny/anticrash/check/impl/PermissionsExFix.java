@@ -23,7 +23,9 @@ public class PermissionsExFix extends Check {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     private void onCommand(PlayerCommandPreprocessEvent event) {
-        if (event.getMessage().toLowerCase().startsWith("/pex promote ") && !event.getPlayer().hasPermission("anticrash.pex")) {
+        if ((event.getMessage().toLowerCase().startsWith("/pex promote ")
+                || event.getMessage().toLowerCase().startsWith("/pex demote "))
+                && !event.getPlayer().hasPermission("anticrash.pex")) {
             MiscUtils.printToConsole(event.getPlayer().getName() + " attempted to crash the server with PermissionsEx: " + event.getMessage());
             ProtocolHandler.kickPlayer(event.getPlayer());
             event.setCancelled(true);
