@@ -4,6 +4,7 @@ import lombok.Getter;
 import me.rainnny.anticrash.check.Check;
 import me.rainnny.anticrash.check.impl.CustomPayload;
 import me.rainnny.anticrash.check.impl.PacketSpam;
+import me.rainnny.anticrash.check.impl.PermissionsExFix;
 import me.rainnny.anticrash.check.impl.SignFix;
 import org.bukkit.entity.Player;
 
@@ -30,6 +31,7 @@ public class DataPlayer {
         checks.add(new PacketSpam(this));
         checks.add(new SignFix(this));
         checks.add(new CustomPayload(this));
+        checks.add(new PermissionsExFix(this));
 
         loginTime = System.currentTimeMillis();
         cache.put(player, this);

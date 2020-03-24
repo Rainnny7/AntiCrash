@@ -22,8 +22,9 @@ public class SignFix extends Check {
     private void onSign(SignChangeEvent event) {
         Optional<String> littleShit = Arrays.stream(event.getLines()).filter(line -> line.length() >= 20).findFirst();
         if (littleShit.isPresent()) {
-            MiscUtils.printToConsole(data.getPlayer().getName() + " was kicked for having a big ass sign line: " + littleShit.get().length());
-            ProtocolHandler.kickPlayer(data.getPlayer());
+            MiscUtils.printToConsole(event.getPlayer().getName() + " was kicked for having a big ass sign line: " + littleShit.get().length());
+            ProtocolHandler.kickPlayer(event.getPlayer());
+            event.setCancelled(true);
         }
     }
 }

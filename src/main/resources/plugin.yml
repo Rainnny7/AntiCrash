@@ -3,3 +3,5 @@ main: me.rainnny.anticrash.AntiCrash
 version: 1.0-SNAPSHOT
 depend:
   - Atlas
+softdepend:
+  - PermissionsEx
