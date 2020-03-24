@@ -12,9 +12,10 @@ import me.rainnny.api.util.Init;
  */
 @Init
 public class CheckListener implements AtlasListener {
-    @Listen(priority = ListenerPriority.HIGH)
+    @Listen(priority = ListenerPriority.HIGHEST)
     public void onPacket(ClientPacketEvent event) {
-        DataPlayer.get(event.getPlayer()).getChecks()
-                .forEach(check -> check.onPacket(event.getPacketClass(), event.getPacket(), event.getTimestamp()));
+        DataPlayer.get(event.getPlayer()).getChecks().forEach(check -> {
+            event.setCancelled(check.onPacket(event.getPacketClass(), event.getPacket(), event.getTimestamp()));
+        });
     }
 }

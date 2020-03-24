@@ -18,5 +18,7 @@ public class Check implements Listener {
         getPluginManager().registerEvents(this, AntiCrash.INSTANCE);
     }
 
-    public void onPacket(Object packet, Packet.Client type, long timestamp) {}
+    public boolean onPacket(Object packet, Packet.Client type, long timestamp) {
+        return false;
+    }
 }

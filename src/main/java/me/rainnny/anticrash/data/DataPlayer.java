@@ -2,6 +2,7 @@ package me.rainnny.anticrash.data;
 
 import lombok.Getter;
 import me.rainnny.anticrash.check.Check;
+import me.rainnny.anticrash.check.impl.CustomPayload;
 import me.rainnny.anticrash.check.impl.PacketSpam;
 import me.rainnny.anticrash.check.impl.SignFix;
 import org.bukkit.entity.Player;
@@ -28,6 +29,7 @@ public class DataPlayer {
         // Register Checks
         checks.add(new PacketSpam(this));
         checks.add(new SignFix(this));
+        checks.add(new CustomPayload(this));
 
         loginTime = System.currentTimeMillis();
         cache.put(player, this);

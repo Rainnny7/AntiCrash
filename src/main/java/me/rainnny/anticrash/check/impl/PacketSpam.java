@@ -19,14 +19,19 @@ public class PacketSpam extends Check {
     }
 
     @Override
-    public void onPacket(Object packet, Packet.Client type, long timestamp) {
+    public boolean onPacket(Object packet, Packet.Client type, long timestamp) {
         long difference = timestamp - lastPacket;
         if (difference <= 10 && MathUtils.elapsed(data.loginTime) >= 1500L) {
             if (threshold++ >= 50) {
-                MiscUtils.printToConsole(data.getPlayer().getName() + " was kicked for spamming packets: " + difference);
-                ProtocolHandler.kickPlayer(data.getPlayer());
+                if (threshold >= 65) {
+                    threshold = 0;
+                    MiscUtils.printToConsole(data.getPlayer().getName() + " was kicked for spamming packets: " + difference);
+                    ProtocolHandler.kickPlayer(data.getPlayer());
+                }
+                return true;
             }
         } else threshold = 0;
         lastPacket = timestamp;
+        return false;
     }
 }
